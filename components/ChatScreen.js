@@ -4,8 +4,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 
 import app from '../database/firebase'
+import { getAuth } from 'firebase/auth'
 import { collection, getFirestore, onSnapshot, query, addDoc } from 'firebase/firestore'
 
+const auth = getAuth(app)
 const db = getFirestore(app)
 const chatRef = collection(db, "chat")
 
@@ -54,10 +56,16 @@ export default function ChatScreen() {
         setMessages((previousMessage) => GiftedChat.append(previousMessage, messages))
     }, [messages])
 
+    const exit = () => {
+        setUser(null)
+        setName('')
+        setMessages([])
+    }
+
     if (!user){
         return (
             <View style={styles.container}>
-                <Text style={styles.mainText}>Welcome New User</Text>
+                <Text style={styles.mainText}>Welcome to the Chat Room!</Text>
                 <Text style={styles.infoText}>Enter your name below to start sending messages!</Text>
                 <TextInput style={styles.input} placeholder="Enter your name" value={name} onChangeText={setName}/>
                 <TouchableOpacity
@@ -71,11 +79,20 @@ export default function ChatScreen() {
         )
     }
     return (
-        <GiftedChat 
-            messages={messages}
-            user={user}
-            onSend={handleSend}
-        />
+        <View style={styles.container}>
+            <GiftedChat 
+                messages={messages}
+                user={user}
+                onSend={handleSend}
+            />
+            <TouchableOpacity
+                style={styles.button} 
+                onPress={() => exit()} >
+                <Text style={styles.buttonText}>
+                    Exit Chat 
+                </Text>
+            </TouchableOpacity>
+        </View>
     )
 }
 
@@ -83,7 +100,6 @@ const styles = StyleSheet.create({
     container: {
        flex: 1,
        backgroundColor: '#fff',
-       alignItems: 'center',
        padding: 35,
     },
     mainText: {
@@ -121,6 +137,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#0af",
         height: 54,
         width: 180,
+        marginLeft: 70,
         marginTop: 40,
         padding: 10,
         borderRadius: 10
