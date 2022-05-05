@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
 import message from '../images/message.png'
+import metrics from '../images/metrics.png'
 
 import app from '../database/firebase'
 import { getAuth } from 'firebase/auth'
@@ -19,12 +20,20 @@ export default class HomeScreen extends Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.mainText}>Patient Dashboard</Text>
-                <Image source={message} style={{width: 200, height: 90, marginTop: 30, marginBottom: 20, resizeMode: 'contain'}}></Image>
+                <Image source={message} style={{width: 200, height: 90, marginTop: 15, marginBottom: 20, resizeMode: 'contain'}}></Image>
                 <TouchableOpacity
                     style={styles.button1}
                     onPress={() => this.props.navigation.navigate("Chat")}>
                     <Text style={styles.buttonText1}>
                         Messages
+                    </Text>
+                </TouchableOpacity>
+                <Image source={metrics} style={{width: 200, height: 110, marginTop: 30, marginBottom: 20, resizeMode: 'contain'}}></Image>
+                <TouchableOpacity
+                    style={styles.button1}
+                    onPress={() => this.props.navigation.navigate("Metrics")}>
+                    <Text style={styles.buttonText1}>
+                        Metrics
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
@@ -48,7 +57,7 @@ const styles = StyleSheet.create({
     },
     mainText: {
         color: '#0af',
-        marginTop: 0,
+        marginTop: -20,
         marginBottom: 10,
         fontSize: 38,
         textAlign: 'center'
@@ -67,7 +76,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#0af",
         height: 50,
         width: 180,
-        marginTop: 350,
+        marginTop: 180,
         padding: 10,
         borderRadius: 10
     },
