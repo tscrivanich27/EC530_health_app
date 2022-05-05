@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
-import { StyleSheet, Text, View, TextInput, Button, Alert, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Alert, TouchableOpacity } from 'react-native';
 
 import auth from '../database/firebase'
-import { createUserWithEmailAndPassword, updateCurrentUser } from 'firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 export default class RegistrationScreen extends Component {
 
@@ -63,11 +63,11 @@ export default class RegistrationScreen extends Component {
                     maxLength={15}
                     secureTextEntry={true}
                 />   
-                <Text
-                    style={styles.loginText}
+                <TouchableOpacity
+                    style={styles.button}
                     onPress={() => this.registerUser()}>
-                    Register
-                </Text>          
+                    <Text style={styles.loginText}>Register</Text> 
+                </TouchableOpacity> 
             </View>
         )
     }
@@ -91,11 +91,19 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1
     },
     loginText: {
-        color: '#0af',
+        color: '#fff',
+        textAlign: 'center',
+        fontSize: 32,
+        fontWeight: 'bold',
+    },
+    button: {
+        alignItems: "center",
+        backgroundColor: "#0af",
+        height: 60,
+        width: 180,
         marginTop: 80,
-        marginBottom: 10,
-        fontSize: 42,
-        textAlign: 'center'
+        padding: 10,
+        borderRadius: 10
     },
     register_message: {
         fontWeight: 'bold',

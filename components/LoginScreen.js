@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Image, View, Text, StyleSheet, TextInput, Button, ActivityIndicator, Alert} from 'react-native';
+import {Image, View, Text, StyleSheet, TextInput, Alert, TouchableOpacity} from 'react-native';
 
 import image from '../images/strong_heart.png'
 
@@ -60,12 +60,14 @@ export default class LoginScreen extends Component {
                     maxLength={15}
                     secureTextEntry={true}
                 />   
-                <Text
-                    style={styles.loginText}
+                <TouchableOpacity
+                    style={styles.button}
                     onPress={() => this.userLogin()}>
-                    Login
-                </Text>
-                <Text 
+                    <Text style={styles.loginText}>
+                      Login
+                    </Text>
+                </TouchableOpacity>
+                <Text
                     style={styles.registerText}
                     onPress={() => this.props.navigation.navigate('Registration')}>
                     New user? Click here to register
@@ -97,16 +99,25 @@ const styles = StyleSheet.create({
       borderBottomWidth: 1,
       fontSize: 24,
     },
-    loginText: {
-      color: '#0af',
-      marginTop: 25,
-      textAlign: 'center',
-      fontSize: 42,
-    },
     registerText: {
       color: '#0af',
       marginTop: 50,
       textAlign: 'center',
       fontSize: 20,
-    }
+    },
+    loginText: {
+      color: '#fff',
+      textAlign: 'center',
+      fontSize: 32,
+      fontWeight: 'bold',
+    },
+    button: {
+      alignItems: "center",
+      backgroundColor: "#0af",
+      height: 60,
+      width: 120,
+      marginTop: 20,
+      padding: 10,
+      borderRadius: 10
+    },
 });
