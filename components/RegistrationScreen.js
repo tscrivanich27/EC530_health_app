@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
 import { StyleSheet, Text, View, TextInput, Alert, TouchableOpacity } from 'react-native';
 
-import auth from '../database/firebase'
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import app from '../database/firebase'
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+
+const auth = getAuth(app)
 
 export default class RegistrationScreen extends Component {
 

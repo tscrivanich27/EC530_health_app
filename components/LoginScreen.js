@@ -3,8 +3,10 @@ import {Image, View, Text, StyleSheet, TextInput, Alert, TouchableOpacity} from 
 
 import image from '../images/strong_heart.png'
 
-import auth from '../database/firebase'
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import app from '../database/firebase'
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+
+const auth = getAuth(app)
 
 export default class LoginScreen extends Component {
     
