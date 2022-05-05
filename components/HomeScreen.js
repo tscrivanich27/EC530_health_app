@@ -3,9 +3,19 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
 import message from '../images/message.png'
 
+import app from '../database/firebase'
+import { getAuth } from 'firebase/auth'
+
+const auth = getAuth(app)
+
 export default class HomeScreen extends Component {
 
     render () {
+        const signout = () => {
+            auth.signOut()
+            this.props.navigation.navigate("Login")
+        }
+
         return (
             <View style={styles.container}>
                 <Text style={styles.mainText}>Patient Dashboard</Text>
@@ -13,9 +23,16 @@ export default class HomeScreen extends Component {
                 <TouchableOpacity
                     style={styles.button1}
                     onPress={() => this.props.navigation.navigate("Chat")}>
-                    <Text style={styles.buttonText}>
+                    <Text style={styles.buttonText1}>
                         Messages
                     </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.button2}
+                    onPress={() => signout()}>
+                    <Text style={styles.buttonText2}>
+                        Sign Out
+                    </Text>     
                 </TouchableOpacity>
             </View>
         )
@@ -39,16 +56,31 @@ const styles = StyleSheet.create({
     button1: {
         alignItems: "center",
         backgroundColor: "#0af",
-        height: 56,
+        height: 50,
         width: 180,
         marginTop: 0,
         padding: 10,
         borderRadius: 10
     },
-    buttonText: {
+    button2: {
+        alignItems: "center",
+        backgroundColor: "#0af",
+        height: 50,
+        width: 180,
+        marginTop: 350,
+        padding: 10,
+        borderRadius: 10
+    },
+    buttonText1: {
         color: '#fff',
         textAlign: 'center',
-        fontSize: 32,
+        fontSize: 24,
         fontWeight: 'bold',
-      },
+    },
+    buttonText2: {
+        color: '#fff',
+        textAlign: 'center',
+        fontSize: 22,
+        fontWeight: 'bold',
+    }
 })

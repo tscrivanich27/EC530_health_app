@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 
 import app from '../database/firebase'
-import { collection, getFirestore, onSnapshot, query, setDoc, doc } from 'firebase/firestore'
+import { collection, getFirestore, onSnapshot, query, addDoc } from 'firebase/firestore'
 
 const db = getFirestore(app)
 const chatRef = collection(db, "chat")
@@ -18,15 +18,17 @@ export default function ChatScreen() {
         readUser()
         const q = query(chatRef);
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
-            const messagesFirestore = querySnapshot.docChanges().filter(({type}) => type === 'added')
+            const messagesFirestore = querySnapshot
+                .docChanges()
+                .filter(({ type }) => type === 'added')
                 .map(({ doc }) => { 
                     const message = doc.data() 
-                    return {...message, createdAt: message.createdAt.toDate()}
+                    return {...message, createdAt: message.createdAt.toDate() }
                 })
                 .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
             appendMessages(messagesFirestore)
         })
-        return unsubscribe()
+        return () => unsubscribe()
     }, [])
 
     async function readUser() {
@@ -44,13 +46,13 @@ export default function ChatScreen() {
     }
 
     async function handleSend(messages) {
-        const writes = messages.map((m) => setDoc(doc(db, `/chat/${user["name"]}`), m))
+        const writes = messages.map((m) => addDoc(chatRef, m))
         await Promise.all(writes)
     }
 
     const appendMessages = useCallback((messages) => {
         setMessages((previousMessage) => GiftedChat.append(previousMessage, messages))
-    })
+    }, [messages])
 
     if (!user){
         return (
@@ -68,15 +70,13 @@ export default function ChatScreen() {
             </View>
         )
     }
-    else {
-        return (
-            <GiftedChat 
-                messages={messages}
-                user={user}
-                onSend={handleSend}
-            />
-        )
-    }
+    return (
+        <GiftedChat 
+            messages={messages}
+            user={user}
+            onSend={handleSend}
+        />
+    )
 }
 
 const styles = StyleSheet.create({
