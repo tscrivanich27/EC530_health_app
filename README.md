@@ -41,6 +41,6 @@ Here is an image of the inital screen in ChatScreen.js:
 
 ![#1](https://user-images.githubusercontent.com/73702777/167194200-a913fb77-2aec-46ad-8719-113d479aa037.jpg)
 
-Here is an image of an example conversation between a medical professional and myself:
+Here is an image of an example conversation between a medical professional (sender) and myself (recipient):
 
 ![#2](https://user-images.githubusercontent.com/73702777/167194231-7701a543-fcb5-4475-bb1c-969a04fd8a50.jpg)
