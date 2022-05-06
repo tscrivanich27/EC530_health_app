@@ -15,9 +15,8 @@ User Stories:
 4) On the patient dashboard, the user can navigate to a message room, see a list of their devices, set reminders, or sign out
 5) On the message room, the user connects with a medical professional to discuss patient information
 6) On the device screen, the user is able to check the results from various third-party medical devices including: Thermometer, Blood Pressure Machine, Glucometer, Weight Scale
-7) On each individual device screen, results are displayed for the user 
-8) On the reminders screen the user is able to set reminders through their phone's calendar app
-9) Finally, the user is able to sign out of the application
+7) On the reminders screen the user is able to set reminders through their phone's calendar app
+8) Finally, the user is able to sign out of the application
 
 ## Database 
 
@@ -36,3 +35,12 @@ Each document will contain a message ID, date of creation, message text, and use
 
 ## Chat Module
 
+The chat module allows a patient to connect with a medical professional or administrator to review results or discuss upcoming/recent appointments. When navigating to the chat module, the user will be required to input their name. The entered name will be checked with the profile in Google Firebase to initialize the user's intended chat room. The dependency, react-native-gifted-chat, contains the UI for the chat room. A button below the chat allows the user to exit the chat room. 
+
+Here is an image of the inital screen in ChatScreen.js:
+
+![#1](https://user-images.githubusercontent.com/73702777/167194200-a913fb77-2aec-46ad-8719-113d479aa037.jpg)
+
+Here is an image of an example conversation between a medical professional and myself:
+
+![#2](https://user-images.githubusercontent.com/73702777/167194231-7701a543-fcb5-4475-bb1c-969a04fd8a50.jpg)
