@@ -53,6 +53,7 @@ export default class LoginScreen extends Component {
                     placeholder="Email"
                     value={this.state.email}
                     onChangeText={(val) => this.updateInputVal(val, 'email')}
+                    placeholderTextColor="#bbb"
                 />
                 <TextInput
                     style={styles.inputStyle}
@@ -61,6 +62,7 @@ export default class LoginScreen extends Component {
                     onChangeText={(val) => this.updateInputVal(val, 'password')}
                     maxLength={15}
                     secureTextEntry={true}
+                    placeholderTextColor="#bbb"
                 />   
                 <TouchableOpacity
                     style={styles.button}

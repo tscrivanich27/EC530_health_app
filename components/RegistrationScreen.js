@@ -50,12 +50,14 @@ export default class RegistrationScreen extends Component {
                     placeholder="Name"
                     value={this.state.displayName}
                     onChangeText={(val) => this.updateInputVal(val, 'displayName')}
+                    placeholderTextColor="#bbb"
                 />      
                 <TextInput
                     style={styles.inputStyle}
                     placeholder="Email"
                     value={this.state.email}
                     onChangeText={(val) => this.updateInputVal(val, 'email')}
+                    placeholderTextColor="#bbb"
                 />
                 <TextInput
                     style={styles.inputStyle}
@@ -64,6 +66,7 @@ export default class RegistrationScreen extends Component {
                     onChangeText={(val) => this.updateInputVal(val, 'password')}
                     maxLength={15}
                     secureTextEntry={true}
+                    placeholderTextColor="#bbb"
                 />   
                 <TouchableOpacity
                     style={styles.button}
