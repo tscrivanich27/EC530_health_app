@@ -1,5 +1,7 @@
+import React from 'react'
 import { NavigationContainer} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { registerRootComponent } from 'expo';
 
 import LoginScreen from './components/LoginScreen';
 import RegistrationScreen from './components/RegistrationScreen';
@@ -23,3 +25,5 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+registerRootComponent(App)
