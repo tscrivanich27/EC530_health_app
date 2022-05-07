@@ -96,6 +96,6 @@ Here is an image of the device screen:
 
 ![#1](https://user-images.githubusercontent.com/73702777/167273836-2e00e71f-e1b2-4c0d-aa6e-5bf2418bec50.jpg)
 
-## User Installation Instructions 
+## Installation Instructions 
 
 1) Download code from the repository onto local machine 
