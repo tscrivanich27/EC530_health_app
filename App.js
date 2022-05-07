@@ -1,4 +1,5 @@
 import React from 'react'
+import { LogBox } from 'react-native'
 import { NavigationContainer} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { registerRootComponent } from 'expo';
@@ -8,9 +9,10 @@ import RegistrationScreen from './components/RegistrationScreen';
 import HomeScreen from './components/HomeScreen'
 import ChatScreen from './components/ChatScreen'
 import MetricsScreen from './components/MetricsScreen';
-import ReminderScreen from './components/ReminderScreen';
 
 const Stack = createNativeStackNavigator();
+
+LogBox.ignoreAllLogs(true)
 
 export default function App() {
 
@@ -22,7 +24,6 @@ export default function App() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Chat" component={ChatScreen} />
         <Stack.Screen name="Metrics" component={MetricsScreen} />
-        <Stack.Screen name="Reminders" component={ReminderScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

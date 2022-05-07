@@ -38,13 +38,6 @@ export default class HomeScreen extends Component {
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.button2}
-                    onPress={() => this.props.navigation.navigate("Reminders")}>
-                    <Text style={styles.buttonText1}>
-                        Set Reminders
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.button3}
                     onPress={() => signout()}>
                     <Text style={styles.buttonText2}>
                         Sign Out
@@ -65,7 +58,7 @@ const styles = StyleSheet.create({
     mainText: {
         color: '#0af',
         marginTop: -20,
-        marginBottom: 10,
+        marginBottom: 30,
         fontSize: 38,
         textAlign: 'center'
     },
@@ -74,7 +67,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#0af",
         height: 50,
         width: 180,
-        marginTop: 10,
+        marginTop: 30,
         padding: 10,
         borderRadius: 10
     },
@@ -83,16 +76,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#0af",
         height: 50,
         width: 200,
-        marginTop: 60,
-        padding: 10,
-        borderRadius: 10
-    },
-    button3: {
-        alignItems: "center",
-        backgroundColor: "#0af",
-        height: 50,
-        width: 180,
-        marginTop: 50,
+        marginTop: 100,
         padding: 10,
         borderRadius: 10
     },
