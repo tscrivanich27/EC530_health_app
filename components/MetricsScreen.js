@@ -31,8 +31,6 @@ export default function MetricsScreen() {
         getMetrics()
     }, [])
 
-    console.log(metrics)
-
     if (metrics != null) {
         return (
             <View style={styles.container}>
