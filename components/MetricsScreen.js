@@ -1,3 +1,4 @@
+// Imports for MetricsScreen.js
 import React, { useState, useEffect } from 'react'
 import {View, Text, StyleSheet} from 'react-native'
 
@@ -5,15 +6,20 @@ import app from '../database/firebase'
 import { getAuth } from 'firebase/auth'
 import { getFirestore, doc, getDoc } from 'firebase/firestore'
 
+// Initialize the authentication module using the Firebase app
 const auth = getAuth(app)
+// Initialize database from firebase app
 const db = getFirestore(app)
 
 export default function MetricsScreen() {
+    // Variables metrics, and userID needed to display metrics to the user
     const [metrics, setMetrics] = useState(null)
     const userID = auth.currentUser.email
 
+    // Initialize a reference to the document with the user email in the "metrics" collection
     const metricsRef = doc(db, "metrics", userID)
 
+    // Get the data in the document
     async function getMetrics() {
         const document = await getDoc(metricsRef)
         if (document.data() == {})
@@ -27,6 +33,7 @@ export default function MetricsScreen() {
         }
     }
 
+    // useEffect function
     useEffect(() => {
         getMetrics()
     }, [])

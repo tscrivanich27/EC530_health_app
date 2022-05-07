@@ -1,0 +1,5 @@
+@react-navigation/native
+react-native-screens
+react-native-safe-area-context
+firebase
+react-native-gifted-chat

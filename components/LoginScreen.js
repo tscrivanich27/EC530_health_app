@@ -1,3 +1,4 @@
+//Imports for LoginScreen.js
 import React, {Component} from 'react';
 import {Image, View, Text, StyleSheet, TextInput, Alert, TouchableOpacity} from 'react-native';
 
@@ -6,10 +7,12 @@ import image from '../images/strong_heart.png'
 import app from '../database/firebase'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
+// Initialize the authentication module using the Firebase app
 const auth = getAuth(app)
 
 export default class LoginScreen extends Component {
     
+    // Email and password states needed for login
     constructor() {
         super();
         this.state = { 
@@ -18,12 +21,14 @@ export default class LoginScreen extends Component {
         }
     }
 
+    // Update states when user inputs text
     updateInputVal = (val, prop) => {
         const state = this.state;
         state[prop] = val;
         this.setState(state);
     }
 
+    // Handle the event when the user wants to sign in to the application
     userLogin = () => {
         if (this.state.email === '' && this.state.password === '') {
           Alert.alert('Enter details to Login!')

@@ -1,3 +1,4 @@
+// Imports for HomeScreen.js
 import React, {Component} from 'react'
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
@@ -7,11 +8,13 @@ import metrics from '../images/metrics.png'
 import app from '../database/firebase'
 import { getAuth } from 'firebase/auth'
 
+// Initialize the authentication module using the Firebase app
 const auth = getAuth(app)
 
 export default class HomeScreen extends Component {
 
     render () {
+        // Handle the event where the user wants to sign out of the application
         const signout = () => {
             auth.signOut()
             this.props.navigation.navigate("Login")

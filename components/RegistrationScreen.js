@@ -1,13 +1,16 @@
+// Imports for RegistrationScreen.js
 import React, {Component} from 'react'
 import { StyleSheet, Text, View, TextInput, Alert, TouchableOpacity } from 'react-native';
 
 import app from '../database/firebase'
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
+// Initialize the authentication module using the Firebase app
 const auth = getAuth(app)
 
 export default class RegistrationScreen extends Component {
 
+    // States displayName, email, and password needed for registration
     constructor() {
         super();
         this.state = { 
@@ -17,15 +20,17 @@ export default class RegistrationScreen extends Component {
         }
     }
 
+    // Update the states when the user inputs text
     updateInputVal = (val, prop) => {
         const state = this.state;
         state[prop] = val;
         this.setState(state);
     }
 
+    // Register the user into the application 
     registerUser = () => {
         if(this.state.email === '' && this.state.password === '') {
-          Alert.alert('Enter details to signup!')
+          Alert.alert('Enter details to Register!')
         } else {
           createUserWithEmailAndPassword(auth, this.state.email, this.state.password).then((res) => {
             Alert.alert("User Created")

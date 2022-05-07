@@ -1,3 +1,4 @@
+// Imports for App.js
 import React from 'react'
 import { LogBox } from 'react-native'
 import { NavigationContainer} from '@react-navigation/native';
@@ -10,8 +11,10 @@ import HomeScreen from './components/HomeScreen'
 import ChatScreen from './components/ChatScreen'
 import MetricsScreen from './components/MetricsScreen';
 
+//Initialize a new stack 
 const Stack = createNativeStackNavigator();
 
+//Ignore all yellow warnings
 LogBox.ignoreAllLogs(true)
 
 export default function App() {

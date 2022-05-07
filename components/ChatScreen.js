@@ -1,21 +1,24 @@
+// Imports for ChatScreen.js
 import React, {useEffect, useState, useCallback} from 'react'
 import { GiftedChat } from 'react-native-gifted-chat';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 
 import app from '../database/firebase'
-import { getAuth } from 'firebase/auth'
 import { collection, getFirestore, onSnapshot, query, addDoc } from 'firebase/firestore'
 
-const auth = getAuth(app)
+// Initialize database from firebase app
 const db = getFirestore(app)
+// Initialize chat collection reference
 const chatRef = collection(db, "chat")
 
 export default function ChatScreen() {
+    // Variables user, name, and messages needed for chat
     const [user, setUser] = useState(null)
     const [name, setName] = useState('')
     const [messages, setMessages] = useState([])
     
+    // useEffect function 
     useEffect(() => {
         readUser()
         const q = query(chatRef);
@@ -33,6 +36,7 @@ export default function ChatScreen() {
         return () => unsubscribe()
     }, [])
 
+    // Use the name to identify the user and set the user variable
     async function readUser() {
         const user = await AsyncStorage.getItem('user')
         if (user) {
@@ -40,6 +44,7 @@ export default function ChatScreen() {
         }
     }
 
+    // Handle the event where the user wants to enter the chat room
     async function handlePress() {
         const _id = Math.random().toString(36).substring(7)
         const user = {_id, name}
@@ -47,15 +52,18 @@ export default function ChatScreen() {
         setUser(user)
     }
 
+    // Handle the event where the user wants to send a message
     async function handleSend(messages) {
         const writes = messages.map((m) => addDoc(chatRef, m))
         await Promise.all(writes)
     }
 
+    // Append all new chat messages to the existing list of messages
     const appendMessages = useCallback((messages) => {
         setMessages((previousMessage) => GiftedChat.append(previousMessage, messages))
     }, [messages])
 
+    // Handle the event where the user wants to exit the chat room 
     const exit = () => {
         setUser(null)
         setName('')

@@ -1,5 +1,0 @@
-npm install @react-navigation/native
-expo install react-native-screens
-expo install react-native-safe-area-context
-npm install firebase
-expo install react-native-gifted-chat
