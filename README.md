@@ -99,3 +99,4 @@ Here is an image of the device screen:
 ## Installation Instructions 
 
 1) Download code from the repository onto local machine 
+2) Navigate 
